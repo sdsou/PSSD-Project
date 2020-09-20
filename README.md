@@ -5,7 +5,8 @@
 --
 Proposal: Job Board Notifier
 
-The Big Idea: What is the main idea of your project? What topics will you explore and what will you generate? What is your minimum viable product? What is a stretch goal?
+The Big Idea: What is the main idea of your project? What topics will you explore and what will you generate? What is your minimum viable product? What is a stretch goal? 
+  - stretch goal: useful and sophisticated, bought by handshake and ccd.
 Learning Goals: Since this is a team project, you may want to articulate both shared and individual learning goals.
 
 Implementation Plan: this will probably be pretty vague initially. Perhaps at this early juncture you will have identified a library or a framework that you think will be useful for your project. If you don't have any idea how you will implement your project, provide a rough plan for how you will determine this information.
