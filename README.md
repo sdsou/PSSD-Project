@@ -1,7 +1,7 @@
 
-# PSSD-Project
+## PSSD-Project
 
-Project Proposal
+# Project Proposal
 --
 Proposal: Job Board Notifier
 
