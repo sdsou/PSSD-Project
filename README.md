@@ -12,7 +12,13 @@ Implementation Plan: this will probably be pretty vague initially. Perhaps at th
 
 Project schedule: You have 8 weeks (roughly) to finish the project. Sketch out a rough schedule for completing the project. Depending on your project, you may be able to do this in great specificity or you may only be able to give a broad outline. Additionally, longer projects come with increased uncertainty, and this schedule will likely need to be refined along the way.
 
-Collaboration plan: How do you plan to collaborate with your teammates on this project? Will you split tasks up, complete them independently, and then integrate? Will you pair program the entire thing? Make sure to articulate your plan for successfully working together as a team. This might also include information about any software development methodologies you plan to use (e.g. agile development). Make sure to make clear why you are choosing this particular organizational structure.
+Collaboration plan: How do you plan to collaborate with your teammates on this project? Will you split tasks up, complete them independently, and then integrate? Will you pair program the entire thing? Make sure to articulate your plan for successfully working together as a team. This might also include information about any software development methodologies you plan to use (e.g. agile development). Make sure to make clear why you are choosing this particular organizational structure
+- Meeting using video calls & messaging over Slack
+- Agile development, working independently but working together to troubleshoot issues & then integrate
+- Split them up as tasks & then integrate it 
+- We will be pair programming by showing each other the steps & understanding our issues and being able to fix them 
+
+
 Risks: What do you view as the biggest risks to the success of this project?
 
 Additional Course Content: What are some topics that we might cover in class that you think would be especially helpful for your project?
