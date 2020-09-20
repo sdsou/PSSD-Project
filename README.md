@@ -7,7 +7,10 @@ Proposal: Job Board Notifier
 
 The Big Idea: What is the main idea of your project? What topics will you explore and what will you generate? What is your minimum viable product? What is a stretch goal? 
   - stretch goal: useful and sophisticated, bought by handshake and ccd.
-Learning Goals: Since this is a team project, you may want to articulate both shared and individual learning goals.
+
+Learning Goals: Since this is a team project, you may want to articulate both shared and individual learning goals. 
+  - jp - RPA
+  - sd - I'd really like to learn how to scrape websites for particular information
 
 - Create Robotic Process Automation
 - Web (HTML/XML) Scraping
