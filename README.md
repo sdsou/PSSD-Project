@@ -18,16 +18,36 @@ Proposal: Job Board Notifier
 -       **Creating/Using or Integrating a Database in Python.** We will have to have a database integrated in Python to store our data and information. This is something new and will be an expansion on our intermediate/elementary Python skills.
 -       **Creating an API.**
 
-Implementation Plan: this will probably be pretty vague initially. Perhaps at this early juncture you will have identified a library or a framework that you think will be useful for your project. If you don't have any idea how you will implement your project, provide a rough plan for how you will determine this information.
+3. **Implementation Plan:** this will probably be pretty vague initially. Perhaps at this early juncture you will have identified a library or a framework that you think will be useful for your project. If you don't have any idea how you will implement your project, provide a rough plan for how you will determine this information.
 
-Project schedule: You have 8 weeks (roughly) to finish the project. Sketch out a rough schedule for completing the project. Depending on your project, you may be able to do this in great specificity or you may only be able to give a broad outline. Additionally, longer projects come with increased uncertainty, and this schedule will likely need to be refined along the way.
+4. **Project schedule** 
 
-Collaboration plan: How do you plan to collaborate with your teammates on this project? Will you split tasks up, complete them independently, and then integrate? Will you pair program the entire thing? Make sure to articulate your plan for successfully working together as a team. This might also include information about any software development methodologies you plan to use (e.g. agile development). Make sure to make clear why you are choosing this particular organizational structure
+**Week 1:** Create an agenda and set goals for what our project will accomplish and how we are going to meet a need. Share our ideas with others and solicit feedback.
+
+**Week 2:** Start coding by writing Pseudo-code and then translating it into Python Code. The pseudo-code will also help us with writing our comments so that other people can understand it clearly without us having to explain it. Receive initial feedback from Professor Li on our code and make improvements as suggested/needed.
+
+**Week 3:** Continue writing the code and test it. Prepare for Mid-Project Presentation, and be able to explain the code well. At this point we should have attempted scraping job-sites and have decided on how the code is going to scrape the job sites for keywords.
+
+**Week 4:** Present Mid-Project Presentation to class. At this point we would like to check that multiple can use our project without the code resetting each time someone logs in to update their information. Start brainstorming ideas for our project website, and how we can add this experience to our professional portfolio.
+
+**Week 5:** Check the code and create new code if needed to make sure that it can email the jobs found to different emails and that it works for various users. Continue agile development and solicit more feedback from others on what they think could be better. Write-up the documents needed for other people to be able to understand what the code does and what it is used for.
+
+**Week 6:** Launch our project website and check user functionality. Include Big Idea/Goal/Why did we do this?, User instructions/README, Implementation information, Results, Project evolution/narrative, and give credit where credit is due.
+Use agile development to continue improving it.
+
+**Week 7:** Work on feedback from other users and improve the website and code as needed/suggested. Work on our pitch and be able to articulate what our project does and how we achieved our goals and what we learned.
+
+**Week 8:** Wrap-up any necessary items and be prepared to present on what we accomplish. Do run-throughs of our presentation and make sure our project website is up to date. Submit the final code.
+
+
+5. **Collaboration plan:** 
+
 - Meeting using video calls & messaging over Slack
+- We will work successfully as a team by keeping respectful and timely communication
+- Shoaib will manage the master code, but we intend on having a flat-structure where everyone is expected to contribute equally
 - Agile development, working independently but working together to troubleshoot issues & then integrate
-- Split them up as tasks & then integrate it 
+- Split up tasks & then integrate them into mastercode 
 - We will be pair programming by showing each other the steps & understanding our issues and being able to fix them 
-
 
 6. **Risks:**
 This project when done correctly will be a huge success and has a practical use that can be really helpful for a lot of Babson students as they navigate the internship/job hunt process. Potential risk that we need to mitigate are:
