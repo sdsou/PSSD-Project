@@ -56,11 +56,11 @@ Use agile development to continue improving it.
 
 6. **Risks:**
 This project when done correctly will be a huge success and has a practical use that can be really helpful for a lot of Babson students as they navigate the internship/job hunt process. Potential risk that we need to mitigate are:
--       Correctly writing and implementing the program exactly as we imagine it.
--       This project is creating a program that will be an intermediary between a user and multiple  job boards’ information. Thus:
--       We need to make sure that we aren’t breaking any potential rules of those job boards
--       Do the job boards open for public view or does one need to have an account in order to access it? If so, how do we go about getting information from them with the idea that multiple users will be using this application?
--       We need to correctly store the user and their preferences (keywords) as well as the post entries we have sent them. On that same note, are we going to have a line of code checking entries previously sent to see if there are duplicates of same posts being sent since this would be a compilation of jobs available from multiple job boards
+- Correctly writing and implementing the program exactly as we imagine it.
+- This project is creating a program that will be an intermediary between a user and multiple  job boards’ information. Thus:
+- We need to make sure that we aren’t breaking any potential rules of those job boards
+- Do the job boards open for public view or does one need to have an account in order to access it? If so, how do we go about getting information from them with the idea that multiple users will be using this application?
+-  We need to correctly store the user and their preferences (keywords) as well as the post entries we have sent them. On that same note, are we going to have a line of code checking entries previously sent to see if there are duplicates of same posts being sent since this would be a compilation of jobs available from multiple job boards
 
 7. **Additional Course Content:**
 	All of our learning goals mentioned are core to our project and are topics we have not learned yet. These are contents that covered in class will be especially helpful for our project.
