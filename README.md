@@ -41,7 +41,6 @@ Use agile development to continue improving it.
 
 **Week 8:** Wrap-up any necessary items and be prepared to present on what we accomplish. Do run-throughs of our presentation and make sure our project website is up to date. Submit the final code.
 
-
 5. **Collaboration plan:** 
 
 - Meeting using video calls & messaging over Slack
