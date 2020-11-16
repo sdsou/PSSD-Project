@@ -23,4 +23,8 @@ https://www.youtube.com/watch?v=_aeEGiB2mHA
   - msg.attach(MINEText(body, "plain"))
 
 https://towardsdatascience.com/email-automation-with-python-72c6da5eef52
+
+https://realpython.com/python-send-email/
+- i think if we use option 2 (setting up a local server) that would work for indeed?
+- 
   
