@@ -7,5 +7,5 @@ def web_scrape_job():
 
 schedule.every(2).seconds.do(web_scrape_job)
 
-while True:
-    schedule.run_pending()
+# while True:
+#     schedule.run_pending()
