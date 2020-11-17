@@ -1,8 +1,8 @@
 import requests
 import csv
 from bs4 import BeautifulSoup
-import pandas as pd
 from datetime import datetime
+import schedule
 
 
 def search(position, location):
@@ -126,3 +126,10 @@ main("data scientist remote", "New York")
 print("Done")
 
 # https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+
+schedule.every(1).weeks.do(
+    main(position, location)
+)  # TODO: Put into HTML possibly, input 1 position, input 2 location
+
+# while True:
+#     schedule.run_pending()
