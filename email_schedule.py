@@ -1,6 +1,6 @@
 # import schedule
 import smtplib
-import Emailer as e
+import Emailer as hidden
 
 
 def web_scrape_job():
@@ -25,14 +25,15 @@ def sendEmail(sender_email, password, to, subject, msg):
         server.sendmail(sender_email, to, message)
         server.quit()
         print("Email Sent")
-    except:
+    except Exception as e:
+        print(e)
         print("Some Error Occured")
 
 
 if __name__ == "__main__":
-    Email = e.email
-    Password = e.password
-    To = "sdsouza1@babson.edu"
+    Email = hidden.email
+    Password = hidden.password
+    To = "srahaman1@babson.edu"
     Subject = "Testing Email"
     Message = "OMG IT WORKED"
     sendEmail(Email, Password, To, Subject, Message)
