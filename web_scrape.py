@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import schedule
 
+"""Source for webscraping indeed: https://www.youtube.com/watch?v=eN_3d4JrL_w"""
+
 
 def search(position, location):
     """Creates a URL from a job position and a location"""
@@ -26,6 +28,9 @@ def search(position, location):
 
 
 def scrub_post(job_post):
+    """
+    Scrubs the job board and collects the job post information
+    """
     atag = job_post.h2.a
     job_title = atag.get("title")
     # print(job_title)
@@ -85,6 +90,11 @@ def scrub_post(job_post):
 
 
 def main(position, location):
+    """
+    Scrubs job posts based on given position and location.
+
+    Returns: CSV file of information.
+    """
     results = []
     URL = search(position, location)
 
@@ -127,9 +137,8 @@ print("Done")
 
 # https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 
-schedule.every(1).weeks.do(
-    main(position, location)
-)  # TODO: Put into HTML possibly, input 1 position, input 2 location
+schedule.every(1).weeks.do(main(position, location))
+# TODO: Put into HTML possibly, input 1 position, input 2 location
 
 # while True:
 #     schedule.run_pending()
