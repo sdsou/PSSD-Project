@@ -3,17 +3,11 @@ import smtplib
 import Emailer as hidden
 
 
-def web_scrape_job():
-    print("A Simple Python Scheduler.")
-
-
-# schedule.every(2).seconds.do(web_scrape_job)
-
-# while True:
-#     schedule.run_pending()
-
-
 def sendEmail(sender_email, password, to, subject, msg):
+    """Function sends user an email based on contents specified in inputs.
+    Source: https://dev.to/bhupesh/a-simple-scheduler-in-python-49di
+    """
+
     try:
         server = smtplib.SMTP("smtp.gmail.com", "587")
         server.starttls()
