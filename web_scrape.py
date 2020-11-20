@@ -89,7 +89,7 @@ def scrub_post(job_post):
 #         results.append(result)
 
 
-def main(position, location):
+def main(position, location, sched=False):
     """
     Scrubs job posts based on given position and location.
 
@@ -97,6 +97,11 @@ def main(position, location):
     """
     results = []
     URL = search(position, location)
+
+    if sched:
+        scheduling(position, location)
+    else:
+        continue
 
     while True:
         page = requests.get(URL)
@@ -135,10 +140,20 @@ def main(position, location):
 main("data scientist remote", "New York")
 print("Done")
 
+
+def scheduling(position, location):
+    """
+    Creating a function for scheduling the webscrapping to occur weekly.
+    """
+    schedule.every(1).weeks.do(
+        main(position, location)
+    )  # TODO: not sure if it will read the position, location as variables or not.
+
+
 # https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 
-schedule.every(1).weeks.do(main(position, location))
-# TODO: Put into HTML possibly, input 1 position, input 2 location
+
+# TODO: Put scheduleing part into HTML possibly, input 1 position, input 2 location
 
 # while True:
 #     schedule.run_pending()
