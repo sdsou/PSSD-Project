@@ -99,7 +99,7 @@ def main(position, location, sched=False):
     URL = search(position, location)
 
     if sched:
-        scheduling()
+        scheduling(position, location)
     else:
         continue
 
@@ -141,7 +141,7 @@ main("data scientist remote", "New York")
 print("Done")
 
 
-def scheduling():
+def scheduling(position, location):
     """
     Creating a function for scheduling the webscrapping to occur weekly.
     """
