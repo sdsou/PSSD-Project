@@ -98,57 +98,45 @@ def main(position, location, sched=False):
     results = []
     URL = search(position, location)
 
-    if sched:
-        scheduling(position, location)
+    if sched is True:
+        schedule.every(1).weeks.do(main(position, location))
     else:
-        continue
+        while True:
+            page = requests.get(URL)
+            soup = BeautifulSoup(page.text, "html.parser")
+            job_posts = soup.find_all("div", "jobsearch-SerpJobCard")
 
-    while True:
-        page = requests.get(URL)
-        soup = BeautifulSoup(page.text, "html.parser")
-        job_posts = soup.find_all("div", "jobsearch-SerpJobCard")
+            for job in job_posts:
+                result = scrub_post(job)
+                results.append(result)
 
-        for job in job_posts:
-            result = scrub_post(job)
-            results.append(result)
+            try:
+                URL = "https://www.indeed.com" + soup.find(
+                    "a", {"aria-label": "Next"}
+                ).get("href")
+            except AttributeError:
+                break
 
-        try:
-            URL = "https://www.indeed.com" + soup.find("a", {"aria-label": "Next"}).get(
-                "href"
+        # Save Job Data
+        with open("results.csv", "w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow(
+                [
+                    "JobTitle",
+                    "Company",
+                    "Location",
+                    "Salary",
+                    "PostDate",
+                    "DateRetrieved",
+                    "Summary",
+                    "JobUrl",
+                ]
             )
-        except AttributeError:
-            break
-
-    # Save Job Data
-    with open("results.csv", "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerow(
-            [
-                "JobTitle",
-                "Company",
-                "Location",
-                "Salary",
-                "PostDate",
-                "DateRetrieved",
-                "Summary",
-                "JobUrl",
-            ]
-        )
-        writer.writerows(results)
+            writer.writerows(results)
 
 
 main("data scientist remote", "New York")
 print("Done")
-
-
-def scheduling(position, location):
-    """
-    Creating a function for scheduling the webscrapping to occur weekly.
-    """
-    schedule.every(1).weeks.do(
-        main(position, location)
-    )  # TODO: not sure if it will read the position, location as variables or not.
-
 
 # https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 
