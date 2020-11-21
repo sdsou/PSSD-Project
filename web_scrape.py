@@ -89,7 +89,7 @@ def scrub_post(job_post):
 #         results.append(result)
 
 
-def main(position, location, sched=False):
+def main(position, location):
     """
     Scrubs job posts based on given position and location.
 
@@ -97,45 +97,50 @@ def main(position, location, sched=False):
     """
     results = []
     URL = search(position, location)
+    while True:
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.text, "html.parser")
+        job_posts = soup.find_all("div", "jobsearch-SerpJobCard")
 
+        for job in job_posts:
+            result = scrub_post(job)
+            results.append(result)
+
+        try:
+            URL = "https://www.indeed.com" + soup.find("a", {"aria-label": "Next"}).get(
+                "href"
+            )
+        except AttributeError:
+            break
+
+    # Save Job Data
+    with open("results1.csv", "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(
+            [
+                "JobTitle",
+                "Company",
+                "Location",
+                "Salary",
+                "PostDate",
+                "DateRetrieved",
+                "Summary",
+                "JobUrl",
+            ]
+        )
+        writer.writerows(results)
+
+
+def send_jobs(position, location, sched=False):
     if sched is True:
         schedule.every(1).weeks.do(main(position, location))
-    else:
         while True:
-            page = requests.get(URL)
-            soup = BeautifulSoup(page.text, "html.parser")
-            job_posts = soup.find_all("div", "jobsearch-SerpJobCard")
-
-            for job in job_posts:
-                result = scrub_post(job)
-                results.append(result)
-
-            try:
-                URL = "https://www.indeed.com" + soup.find(
-                    "a", {"aria-label": "Next"}
-                ).get("href")
-            except AttributeError:
-                break
-
-        # Save Job Data
-        with open("results.csv", "w", newline="", encoding="utf-8") as f:
-            writer = csv.writer(f)
-            writer.writerow(
-                [
-                    "JobTitle",
-                    "Company",
-                    "Location",
-                    "Salary",
-                    "PostDate",
-                    "DateRetrieved",
-                    "Summary",
-                    "JobUrl",
-                ]
-            )
-            writer.writerows(results)
+            schedule.run_pending()
+    else:
+        main(position, location)
 
 
-main("data scientist remote", "New York")
+send_jobs("data scientist remote", "New York", sched=False)
 print("Done")
 
 # https://www.crummy.com/software/BeautifulSoup/bs4/doc/
