@@ -136,12 +136,14 @@ def send_jobs(position, location, sched=False):
         schedule.every(1).weeks.do(main(position, location))
         while True:
             schedule.run_pending()
+            print("Waiting...")
     else:
         main(position, location)
+        print("Done")
 
 
 send_jobs("data scientist remote", "New York", sched=False)
-print("Done")
+
 
 # https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 
