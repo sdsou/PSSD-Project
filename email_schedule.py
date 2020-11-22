@@ -3,9 +3,10 @@ import smtplib
 import Emailer as hidden
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import web_scrape as ws
 
 
-def sendEmail(sender_email, password, to, subject, msg):
+def sendEmail(to, subject, msg):
     """Function sends user an email based on contents specified in inputs.
     Source: https://dev.to/bhupesh/a-simple-scheduler-in-python-49di
     """
@@ -13,10 +14,15 @@ def sendEmail(sender_email, password, to, subject, msg):
     try:
         server = smtplib.SMTP("smtp.gmail.com", "587")
         server.starttls()
-        server.login(sender_email, password)
+        server.login(hidden.email, hidden.password)
 
-        message = f"From: {sender_email}\nTo: {to}\nSubject: {subject}\n\n{msg}"
-        print(message)
+        message = MIMEMultipart()
+        message["Subject"] = subject
+        message["From"] = sender_email
+        message["To"] = to
+
+        message.attach(MIMEText(msg, "html"))
+        msgBody = msg.as_string()
 
         server.sendmail(sender_email, to, message)
         server.quit()
@@ -26,10 +32,17 @@ def sendEmail(sender_email, password, to, subject, msg):
         print("Some Error Occured")
 
 
-if __name__ == "__main__":
-    Email = hidden.email
-    Password = hidden.password
-    To = "srahaman1@babson.edu"
+def send_job_list(recepient_email):
+    To = recepient_email
     Subject = "Testing Email"
-    Message = "OMG IT WORKED"
-    sendEmail(Email, Password, To, Subject, Message)
+    template = env.get_template(
+        "email.html"
+    )  # Need To Figure out how to get the email template
+    Message = template.render(ws.results)  # and then how to render it
+    sendEmail(To, Subject, Message)
+    return "Email Sent"
+
+
+if __name__ == "__main__":
+    recepient_email = "srahaman1@babson.edu"
+    send_job_list(recepient_email)

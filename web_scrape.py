@@ -142,7 +142,13 @@ def send_jobs(position, location, sched=False):
         print("Done")
 
 
-send_jobs("data scientist remote", "New York", sched=False)
+position = input("What job are you looking for? ")
+location = input("Where should this job be located? ")
+sch = input("Would you like to be updated in 1 week on this job search? (yes/no): ")
+if sch is "yes":
+    sch = True
+
+# send_jobs(position, location, sch)
 
 
 # https://www.crummy.com/software/BeautifulSoup/bs4/doc/
