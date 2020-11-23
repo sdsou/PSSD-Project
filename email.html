@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Thank you for using our app!</title>
+</head>
+<h1>Here's what we can could find in for your search for "{web_scrape.position}" in "{web_scrape.location}</h1>
+
+<body>
+    <div id="content">
+        <p>
+            {% for result in {web_scrape.results}%}
+        <h2>{{result[job_title]}}</h2>
+        <h3>{{result[company]}}</h3>
+        Salary: {{result[salary]}}
+        Summary: {{result[job_summary]}}
+        Day Posted: {{result[post_date]}}
+        Apply more here: {{result[job_url]}}
+        {% endfor %}
+        </p>
+    </div>
+</body>
+
+</html>

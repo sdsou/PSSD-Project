@@ -4,7 +4,8 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import schedule
 
-"""Source for webscraping indeed: https://www.youtube.com/watch?v=eN_3d4JrL_w"""
+"""Source for webscraping indeed: https://www.youtube.com/watch?v=eN_3d4JrL_w
+    Source for bs4 documentation: https://www.crummy.com/software/BeautifulSoup/bs4/doc/ """
 
 
 def search(position, location):
@@ -89,7 +90,7 @@ def scrub_post(job_post):
 #         results.append(result)
 
 
-def main(position, location, sched=False):
+def main(position, location):
     """
     Scrubs job posts based on given position and location.
 
@@ -97,51 +98,58 @@ def main(position, location, sched=False):
     """
     results = []
     URL = search(position, location)
+    while True:
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.text, "html.parser")
+        job_posts = soup.find_all("div", "jobsearch-SerpJobCard")
 
+        for job in job_posts:
+            result = scrub_post(job)
+            results.append(result)
+
+        try:
+            URL = "https://www.indeed.com" + soup.find("a", {"aria-label": "Next"}).get(
+                "href"
+            )
+        except AttributeError:
+            break
+
+    # Save Job Data
+    with open("results1.csv", "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(
+            [
+                "JobTitle",
+                "Company",
+                "Location",
+                "Salary",
+                "PostDate",
+                "DateRetrieved",
+                "Summary",
+                "JobUrl",
+            ]
+        )
+        writer.writerows(results)
+
+###TO USE IN WEBSITE
+def send_jobs(position, location, sched=False):
     if sched is True:
         schedule.every(1).weeks.do(main(position, location))
-    else:
         while True:
-            page = requests.get(URL)
-            soup = BeautifulSoup(page.text, "html.parser")
-            job_posts = soup.find_all("div", "jobsearch-SerpJobCard")
-
-            for job in job_posts:
-                result = scrub_post(job)
-                results.append(result)
-
-            try:
-                URL = "https://www.indeed.com" + soup.find(
-                    "a", {"aria-label": "Next"}
-                ).get("href")
-            except AttributeError:
-                break
-
-        # Save Job Data
-        with open("results.csv", "w", newline="", encoding="utf-8") as f:
-            writer = csv.writer(f)
-            writer.writerow(
-                [
-                    "JobTitle",
-                    "Company",
-                    "Location",
-                    "Salary",
-                    "PostDate",
-                    "DateRetrieved",
-                    "Summary",
-                    "JobUrl",
-                ]
-            )
-            writer.writerows(results)
+            schedule.run_pending()
+            print("Waiting...")
+    else:
+        main(position, location)
+        print("Done")
 
 
-main("data scientist remote", "New York")
-print("Done")
+if __name__ == "__main__":
+    position = input("What job are you looking for? ")
+    location = input("Where should this job be located? ")
+    sch = input("Would you like to be updated in 1 week on this job search? (yes/no): ")
+    
+    if sch is "yes":
+    sch = True
 
-# https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+    send_jobs(position, location, sch)
 
-
-# TODO: Put scheduleing part into HTML possibly, input 1 position, input 2 location
-
-# while True:
-#     schedule.run_pending()
