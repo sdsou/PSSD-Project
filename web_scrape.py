@@ -4,7 +4,8 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import schedule
 
-"""Source for webscraping indeed: https://www.youtube.com/watch?v=eN_3d4JrL_w"""
+"""Source for webscraping indeed: https://www.youtube.com/watch?v=eN_3d4JrL_w
+    Source for bs4 documentation: https://www.crummy.com/software/BeautifulSoup/bs4/doc/ """
 
 
 def search(position, location):
@@ -130,7 +131,7 @@ def main(position, location):
         )
         writer.writerows(results)
 
-
+###TO USE IN WEBSITE
 def send_jobs(position, location, sched=False):
     if sched is True:
         schedule.every(1).weeks.do(main(position, location))
@@ -142,19 +143,13 @@ def send_jobs(position, location, sched=False):
         print("Done")
 
 
-position = input("What job are you looking for? ")
-location = input("Where should this job be located? ")
-sch = input("Would you like to be updated in 1 week on this job search? (yes/no): ")
-if sch is "yes":
+if __name__ == "__main__":
+    position = input("What job are you looking for? ")
+    location = input("Where should this job be located? ")
+    sch = input("Would you like to be updated in 1 week on this job search? (yes/no): ")
+    
+    if sch is "yes":
     sch = True
 
-# send_jobs(position, location, sch)
+    send_jobs(position, location, sch)
 
-
-# https://www.crummy.com/software/BeautifulSoup/bs4/doc/
-
-
-# TODO: Put scheduleing part into HTML possibly, input 1 position, input 2 location
-
-# while True:
-#     schedule.run_pending()

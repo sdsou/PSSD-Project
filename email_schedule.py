@@ -18,13 +18,13 @@ def sendEmail(to, subject, msg):
 
         message = MIMEMultipart()
         message["Subject"] = subject
-        message["From"] = sender_email
+        message["From"] = hidden.email
         message["To"] = to
 
         message.attach(MIMEText(msg, "html"))
-        msgBody = msg.as_string()
+        msgBody = msg.as_string()  ########### Uncalled Variable
 
-        server.sendmail(sender_email, to, message)
+        server.sendmail(hidden.email, to, message)
         server.quit()
         print("Email Sent")
     except Exception as e:
@@ -40,8 +40,9 @@ def send_job_list(recepient_email):
     )  # Need To Figure out how to get the email template
     Message = template.render(ws.results)  # and then how to render it
     sendEmail(To, Subject, Message)
-    return "Email Sent"
 
+
+###Combine webscrape w/ scheduler to the emailer
 
 if __name__ == "__main__":
     recepient_email = "srahaman1@babson.edu"
