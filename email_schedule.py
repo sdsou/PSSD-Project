@@ -5,26 +5,33 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import web_scrape as ws
 
+""" Sources:
+https://blog.mailtrap.io/sending-emails-in-python-tutorial-with-code-examples/#Sending_HTML_email
+https://dev.to/carola99/send-an-html-email-template-with-python-and-jinja2-1hd0
+https://www.spritecloud.com/creating-and-sending-html-e-mails-with-python/ """
 
-def sendEmail(to, subject, msg):
+
+def sendEmail(to, subject):
     """Function sends user an email based on contents specified in inputs.
     Source: https://dev.to/bhupesh/a-simple-scheduler-in-python-49di
     """
 
     try:
-        server = smtplib.SMTP("smtp.gmail.com", "587")
-        server.starttls()
-        server.login(hidden.email, hidden.password)
-
         message = MIMEMultipart()
-        message["Subject"] = subject
+        message["Subject"] = str(subject)
         message["From"] = hidden.email
         message["To"] = to
 
-        message.attach(MIMEText(msg, "html"))
-        msgBody = msg.as_string()  ########### Uncalled Variable
+        with open("email_template.html", "r") as f:
+            html = f.read()
 
-        server.sendmail(hidden.email, to, message)
+        msgBody = MIMEText(html, "html")
+        message.attach(msgBody)
+
+        server = smtplib.SMTP("smtp.gmail.com", "587")
+        server.starttls()
+        server.login(hidden.email, hidden.password)
+        server.sendmail(hidden.email, to, message.as_string())
         server.quit()
         print("Email Sent")
     except Exception as e:
@@ -35,11 +42,7 @@ def sendEmail(to, subject, msg):
 def send_job_list(recepient_email):
     To = recepient_email
     Subject = "Testing Email"
-    template = env.get_template(
-        "email.html"
-    )  # Need To Figure out how to get the email template
-    Message = template.render(ws.results)  # and then how to render it
-    sendEmail(To, Subject, Message)
+    sendEmail(To, Subject)
 
 
 ###Combine webscrape w/ scheduler to the emailer
