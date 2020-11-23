@@ -131,6 +131,7 @@ def main(position, location):
         )
         writer.writerows(results)
 
+
 ###TO USE IN WEBSITE
 def send_jobs(position, location, sched=False):
     if sched is True:
@@ -147,9 +148,8 @@ if __name__ == "__main__":
     position = input("What job are you looking for? ")
     location = input("Where should this job be located? ")
     sch = input("Would you like to be updated in 1 week on this job search? (yes/no): ")
-    
+
     if sch is "yes":
-    sch = True
+        sch = True
 
     send_jobs(position, location, sch)
-
