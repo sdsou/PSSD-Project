@@ -1,6 +1,6 @@
 # import schedule
 import smtplib
-import Emailer as hidden
+import DO_NOT_OPEN as hidden
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import web_scrape as ws
