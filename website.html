@@ -1,16 +1,48 @@
 <html>
     <head>
-        <title>
+    <style>
+    body {
+        background-color: lightblue;
+    }
+    h1 {color: white;
+    text-align: center;
+    font-size: 20px;
+    font-family: monospace;
+    }
+    p {color: black;
+    text-align: center;
+    font-size: 16px;
+    font-family: monospace;}
+    ul {color: black;
+    text-align: center;
+    font-size: 16px;
+    font-family: monospace;
+    display:inline}
+    h2 {color: black;
+    text-align: center;
+    font-size: 18px;
+    font-family: monospace;}
+    </style>
+        <title>Problem Solving and Software Design Final Project       </title>
 
-
-
-
-
-
-        </title>
     </head>
 
     <body>
+        <h1 style="font-size: 50px;">Automated Job Searcher</h1>
+        <h1>By: Caroline Benson, Susanna D'Souza, and Shaoib Rahaman</h1>
+        <h1 style="text-decoration: underline; font-size: 30px;">The Big Idea</h1>
+        <p>The goal of this project is to webscrape Indeed website for a list of job results that match position and location preferences and email them to the user. The user also has the option of selecting whether they'd like to schedule this webscraper to give them a list of jobs the following week as well. All of this can be done on the user website created.</p>
+        <p>In order to use the following code, one would need to open the website html name in their browser. After inputting the information regarding their location, position, scheduling, and emailing preferences and hitting submit, the html will link to the webscrape.py or email_schedule.py and run the webscraping.py code using the preferences given. The results from this python file will then be emailed to the user using the email_schedule.py file.</p>
+        <h2 style="text-decoration: underline; font-size: 30px;">Program Features</h2>
+        <ul>
+            <li>Web Scraping</li>
+            <li>Email Scheduler</li>
+            <li>Email Automation</li>
+        </ul>
+        <div style="text-align: center; font-family: monospace; font-size: 2opx; padding-top: 100px;">
+        <button onclick="send_jobs()">Click me!</button>
+        </div>
+
 
 
 
