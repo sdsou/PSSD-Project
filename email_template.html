@@ -6,21 +6,23 @@
     <title>Thank you for using our app!</title>
 </head>
 
-<h1>Here's what we can could find in for your search for "{web_scrape.position}" in "{web_scrape.location}</h1>
-<form method="POST" , name="mtba_helper"></form>
+<h1>Here's what we can could find in your search for {{position}} in {{location}}:</h1>
 
 <body>
     <div id="content">
+        {% block content %}
         <p>
-            {% for result in {web_scrape.results}%}
-        <h2>{{result[job_title]}}</h2>
-        <h3>{{result[company]}}</h3>
-        Salary: {{result[salary]}}
-        Summary: {{result[job_summary]}}
-        Day Posted: {{result[post_date]}}
-        Apply more here: {{result[job_url]}}
+            {% for key in results %}:
+        <h2>{{results[key]["job_title"]}}</h2>
+        <h3>{{results[key]["company"]}}</h3>
+        <b>Salary:</b> {{results[key]["salary"]}} <br>
+        <b>Summary:</b> {{results[key]["job_summary"]}} <br>
+        <b>Day Posted:</b> {{results[key]["post_date"]}} <br>
+        <b>Learn & apply more here:</b> {{results[key]["job_url"]}} <br>
+        <hr>
         {% endfor %}
         </p>
+        {% endblock %}
     </div>
 </body>
 
