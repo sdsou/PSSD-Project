@@ -5,7 +5,9 @@ from datetime import datetime
 import schedule
 
 """Source for webscraping indeed: https://www.youtube.com/watch?v=eN_3d4JrL_w
-    Source for bs4 documentation: https://www.crummy.com/software/BeautifulSoup/bs4/doc/ """
+    Source for bs4 documentation: https://www.crummy.com/software/BeautifulSoup/bs4/doc/ 
+    Source for scheduling: https://dev.to/bhupesh/a-simple-scheduler-in-python-49di
+    """
 
 
 def search(position, location):
