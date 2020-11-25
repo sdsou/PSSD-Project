@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Thank you for using our app!</title>
+</head>
+
+<h1>Here's what we can could find in your search for {{position}} in {{location}}:</h1>
+
+<body>
+    <div id="content">
+        {% block content %}
+        <p>
+            {% for key in results %}:
+        <h2>{{results[key]["job_title"]}}</h2>
+        <h3>{{results[key]["company"]}}</h3>
+        <b>Salary:</b> {{results[key]["salary"]}} <br>
+        <b>Summary:</b> {{results[key]["job_summary"]}} <br>
+        <b>Day Posted:</b> {{results[key]["post_date"]}} <br>
+        <b>Learn & apply more here:</b> {{results[key]["job_url"]}} <br>
+        <hr>
+        {% endfor %}
+        </p>
+        {% endblock %}
+    </div>
+</body>
+
+</html>
