@@ -16,7 +16,8 @@ env = Environment(loader=FileSystemLoader(searchpath="./"))
 """ Sources:
 https://blog.mailtrap.io/sending-emails-in-python-tutorial-with-code-examples/#Sending_HTML_email
 https://dev.to/carola99/send-an-html-email-template-with-python-and-jinja2-1hd0
-https://www.spritecloud.com/creating-and-sending-html-e-mails-with-python/ """
+https://www.spritecloud.com/creating-and-sending-html-e-mails-with-python/
+https://stackoverflow.com/questions/23171140/how-do-i-send-an-email-with-a-csv-attachment-using-python"""
 
 
 def sendEmail(to, subject, content):

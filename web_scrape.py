@@ -59,10 +59,10 @@ def scrub_post(job_post, excel=False):
             job_title,
             company,
             job_location,
+            salary,
             post_date,
             today,
             job_summary,
-            salary,
             job_url,
         ]
         return result
@@ -106,7 +106,7 @@ while True:
         results.append(result)"""
 
 
-def main(position, location):
+def find_jobs(position, location):
     """
     Scrubs job posts based on given position and location.
 
@@ -181,14 +181,13 @@ def write_csv(postion, location):
 
 
 def combine(position, location):
-    results = main(position, location)
     write_csv(position, location)
-    return results
+    return main(position, location)
 
 
 ###TO USE IN WEBSITE
 def schd_jobs(position, location, sched=False):
-    results = main(position, location)
+    results = find_jobs(position, location)
     write_csv(position, location)
     if sched is True:
         schedule.every(1).weeks.do(combine(position, location))
@@ -200,13 +199,10 @@ def schd_jobs(position, location, sched=False):
         return results
 
 
-if __name__ == "__main__":
-    position = input("What job are you looking for? ")
-    location = input("Where should this job be located? ")
-    # sch = input("Would you like to be updated in 1 week on this job search? (yes/no): ")
-
-    # if sch == "yes":
-    #     sch = True
-    recipient_email = input("What is your email? ")
-    content = schd_jobs(position, location, False)
+def main(position, location, schedule, recipient_email):
+    content = schd_jobs(position, location, schedule)
     es.send_job_list(content, recipient_email)
+
+
+if __name__ == "__main__":
+    pass
