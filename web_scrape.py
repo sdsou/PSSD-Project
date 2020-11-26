@@ -31,7 +31,7 @@ def search(position, location):
 # job_post = job_posts[0]
 
 
-def scrub_post(job_post):
+def scrub_post(job_post, excel=False):
     """
     Scrubs the job board and collects the job post information
     """
@@ -54,17 +54,30 @@ def scrub_post(job_post):
         salary = job_post.find("span", "salaryText").text.strip()
     except AttributeError:
         salary = ""
-    result = {
-        "job_title": job_title,
-        "company": company,
-        "job_location": job_location,
-        "salary": salary,
-        "post_date": post_date,
-        "today": today,
-        "job_summary": job_summary,
-        "job_url": job_url,
-    }
-    return result
+    if excel is True:
+        result = [
+            job_title,
+            company,
+            job_location,
+            post_date,
+            today,
+            job_summary,
+            salary,
+            job_url,
+        ]
+        return result
+    else:
+        result = {
+            "job_title": job_title,
+            "company": company,
+            "job_location": job_location,
+            "salary": salary,
+            "post_date": post_date,
+            "today": today,
+            "job_summary": job_summary,
+            "job_url": job_url,
+        }
+        return result
 
 
 # results = []
@@ -110,7 +123,7 @@ def main(position, location):
         id = 0
         while True:
             for job in job_posts:
-                results[id] = scrub_post(job)
+                results[id] = scrub_post(job, False)
                 id += 1
             break
         page_count += 1
@@ -138,7 +151,7 @@ def write_csv(postion, location):
         job_posts = soup.find_all("div", "jobsearch-SerpJobCard")
 
         for job in job_posts:
-            csv_result = scrub_post(job)
+            csv_result = scrub_post(job, True)
             csv_results.append(csv_result)
         page_count += 1
         try:
