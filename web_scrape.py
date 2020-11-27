@@ -141,7 +141,7 @@ def find_jobs(position, location):
 # print(results)
 
 
-def write_csv(postion, location):
+def write_csv(position, location):
     csv_results = []
     URL = search(position, location)
     page_count = 0
@@ -189,7 +189,7 @@ def combine(position, location):
 def schd_jobs(position, location, sched=False):
     results = find_jobs(position, location)
     write_csv(position, location)
-    if sched is True:
+    if sched == "yes" == True:
         schedule.every(1).weeks.do(combine(position, location))
         while True:
             schedule.run_pending()

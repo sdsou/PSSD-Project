@@ -6,9 +6,8 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 import mimetypes
-import web_scrape as ws
 from jinja2 import Environment, FileSystemLoader
-import os
+import web_scrape as ws
 
 # Get tmeplate from file system to load
 env = Environment(loader=FileSystemLoader(searchpath="./"))
@@ -65,13 +64,11 @@ def sendEmail(to, subject, content):
         print("Some Error Occured")
 
 
-def send_job_list(results, recepient_email):
+def send_job_list(results, recepient_email, Position, Location):
     To = recepient_email
-    Subject = "Fixed Emailer!"
+    Subject = "Here are your Job Search Results!"
     template = env.get_template("email_template.html")
-    output = template.render(
-        results=results, position="position", location="ws.location"
-    )
+    output = template.render(results=results, Position=Position, Location=Location)
     sendEmail(To, Subject, output)
 
 

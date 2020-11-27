@@ -7,12 +7,13 @@ app = Flask(__name__)
 
 @app.route("/")
 def website():
-    return render_template("website.html")
+    return render_template("homepage.html")
 
 
-@route("/jobsearch")
+@app.route("/jobsearch/", methods=["GET", "POST"])
 def searchform():
-    return render_template("page2.html")
+    if request.method == "GET":
+        return render_template("page2.html")
 
 
 @app.route("/searchresults/", methods=["GET", "POST"])
@@ -23,7 +24,11 @@ def click_me():
         Schedule = request.form["Schedule"]
         Email = request.form["Email"]
         content = schd_jobs(Position, Location, Schedule)
-        send_job_list(content, Email)
+        send_job_list(content, Email, Position, Location)
     return render_template(
-        "demonstration.html", results=content, position=Position, location=Location
+        "demonstration.html",
+        results=content,
+        Position=Position,
+        Location=Location,
+        Schedule=Schedule,
     )

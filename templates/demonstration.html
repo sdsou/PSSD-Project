@@ -6,8 +6,9 @@
     <title>Thank you for using our app!</title>
 </head>
 <h1>
-    Here's what we can could find in your search for {{Position}} in {{Location}}:
+    Here's what we can could find in your search for {{Position}} in {{Location}}: <br>
     We've sent an email with a full search list!
+    <hr>
 </h1>
 
 <body>
@@ -20,7 +21,7 @@
         <b>Salary:</b> {{results[key]["salary"]}} <br>
         <b>Summary:</b> {{results[key]["job_summary"]}} <br>
         <b>Day Posted:</b> {{results[key]["post_date"]}} <br>
-        <b>Learn & apply more here:</b> {{results[key]["job_url"]}} <br>
+        <a href="{{results[key]['job_url']}}"><b>Learn & apply more here</b></a> <br>
         <hr>
         {% endfor %}
         </p>
