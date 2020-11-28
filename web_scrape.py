@@ -31,7 +31,7 @@ def search(position, location):
 # job_post = job_posts[0]
 
 
-def scrub_post(job_post):
+def scrub_post(job_post, excel=False):
     """
     Scrubs the job board and collects the job post information
     """
@@ -54,17 +54,30 @@ def scrub_post(job_post):
         salary = job_post.find("span", "salaryText").text.strip()
     except AttributeError:
         salary = ""
-    result = {
-        "job_title": job_title,
-        "company": company,
-        "job_location": job_location,
-        "salary": salary,
-        "post_date": post_date,
-        "today": today,
-        "job_summary": job_summary,
-        "job_url": job_url,
-    }
-    return result
+    if excel is True:
+        result = [
+            job_title,
+            company,
+            job_location,
+            salary,
+            post_date,
+            today,
+            job_summary,
+            job_url,
+        ]
+        return result
+    else:
+        result = {
+            "job_title": job_title,
+            "company": company,
+            "job_location": job_location,
+            "salary": salary,
+            "post_date": post_date,
+            "today": today,
+            "job_summary": job_summary,
+            "job_url": job_url,
+        }
+        return result
 
 
 # results = []
@@ -93,7 +106,7 @@ while True:
         results.append(result)"""
 
 
-def main(position, location):
+def find_jobs(position, location):
     """
     Scrubs job posts based on given position and location.
 
@@ -110,7 +123,7 @@ def main(position, location):
         id = 0
         while True:
             for job in job_posts:
-                results[id] = scrub_post(job)
+                results[id] = scrub_post(job, False)
                 id += 1
             break
         page_count += 1
@@ -128,7 +141,7 @@ def main(position, location):
 # print(results)
 
 
-def write_csv(postion, location):
+def write_csv(position, location):
     csv_results = []
     URL = search(position, location)
     page_count = 0
@@ -138,7 +151,7 @@ def write_csv(postion, location):
         job_posts = soup.find_all("div", "jobsearch-SerpJobCard")
 
         for job in job_posts:
-            csv_result = scrub_post(job)
+            csv_result = scrub_post(job, True)
             csv_results.append(csv_result)
         page_count += 1
         try:
@@ -168,16 +181,15 @@ def write_csv(postion, location):
 
 
 def combine(position, location):
-    results = main(position, location)
     write_csv(position, location)
-    return results
+    return main(position, location)
 
 
 ###TO USE IN WEBSITE
 def schd_jobs(position, location, sched=False):
-    results = main(position, location)
+    results = find_jobs(position, location)
     write_csv(position, location)
-    if sched is True:
+    if sched == "yes" == True:
         schedule.every(1).weeks.do(combine(position, location))
         while True:
             schedule.run_pending()
@@ -187,13 +199,10 @@ def schd_jobs(position, location, sched=False):
         return results
 
 
-if __name__ == "__main__":
-    position = input("What job are you looking for? ")
-    location = input("Where should this job be located? ")
-    # sch = input("Would you like to be updated in 1 week on this job search? (yes/no): ")
-
-    # if sch == "yes":
-    #     sch = True
-    recipient_email = input("What is your email? ")
-    content = schd_jobs(position, location, False)
+def main(position, location, schedule, recipient_email):
+    content = schd_jobs(position, location, schedule)
     es.send_job_list(content, recipient_email)
+
+
+if __name__ == "__main__":
+    pass
