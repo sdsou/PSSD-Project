@@ -135,6 +135,8 @@ def main(position, location):
 
 
 ###TO USE IN WEBSITE
+
+
 def send_jobs(position, location, sched=False):
     if sched is True:
         schedule.every(1).weeks.do(main(position, location))
