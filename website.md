@@ -8,7 +8,7 @@
 *Quick and easily understandable explanation of what your project is all about. Consider including a narrative or example use case, e.g. via screenshots, video, or story boarding. **(DELETE)***
 - need to efficiently find jobs, all college seniors trying to find our next stop on journey called life
   
-Automated Job Searcher is a simple to use program that emails a user a list of all jobs found on Indeed that meet the position and location criteria given. The idea for Automated Job Searcher sparked out of the common problem our team could relate to as seniors at Babson college who were either looking for a job or knew others who were searching for a job during 2020's uncertain times. We wanted to make the job hunting process more efficent where we could receive a list of all the jobs that met our position and location requirements, rather than having to spend a lot of time clicking through pages of possible jobs and only liking five after all that time. Since this project was to try to automate something to be more efficient this was the perfect project to work on because it could be automated *and* it mattered to us.
+Our Automated Job Searcher is a simple to use program that emails a user a list of all jobs found on Indeed that meet the position and location criteria given. The idea for the Automated Job Searcher sparked out of the common problem our team could relate to as seniors at Babson college who were either looking for a job or knew others who were searching for a job during 2020's uncertain times. We wanted to make the job hunting process more efficent where we could receive a list of all the jobs that met our position and location requirements, rather than having to spend a clicking through pages of potential jobs and only liking five after all that time. Since this project was to try to automate something to be more efficient this was the perfect project to work on because it could be automated *and* it mattered to us.
 
 ## User instructions/ReadMe
 **(DELETE)** Information to help users download, install, and get started running your software.*
@@ -22,7 +22,9 @@ The program, as previously mentioned, is extremely simple to interact with as th
 The code behind the program is not so simple as it includes multiple facets. There are three components to the code: the webscraping of Indeed website, the weekly scheduling of the webscraping, and the emailing of these results.
 
 The program's first part of webscrapping was necessary as there were no free available APIs for any of the popular job boards used.
-**SHOAIB** - WRITE A LITTLE ABOUT THE WEBSCRAPING (also mention code's source).
+
+Following YouTuber Izzy Analytics' video (https://www.youtube.com/watch?v=eN_3d4JrL_w), we were able to accurately gather and retrieve all the information needed from Indeed's website after a job-specific search. The webscraping was split into two parts, scraping the job posts and then creating a csv file to log all the job posts. This had to be done separately, unlike Izzy's video, because in order to display the scraped results on the website, we resorted to creating a function that logs the job post information into a dictionary for easy identification and accessibility. However, this dictionary could not be transformed easily into a csv file for the purposes of emailing the results to the user so we altered the function slightly to log the search results into a list to convert it into a csv.
+
 The main function is the final function that ties all the multiple webscraping functions together.
 
 *Insert image of the most important function - Photo 1*
@@ -54,14 +56,14 @@ As a group, there are multiple results that we've achieved:
 
 1. **Successful Pair Programming**: We worked together as a team, pair programming on multiple facets of the project where we learned visual code tips and tricks from each other, brainstormed implementation methods as a team, and were able to bypass challenges with each other's help.
    
-2. **Learned Webscraping**: While our team varies in webscrapping abilities, we all learned  a little about it(this was dependent on our responsibilities on the team).
+2. **Learned Webscraping**: While our team varies in webscrapping abilities, we all learned  a little about it (this was dependent on our responsibilities on the team).
 
-3. **Scheduling and emailing**: We learned how to use Python to schedule code and send Emails.
+3. **Scheduling and emailing**: We learned how to use Python to schedule code and send emails.
 
 ## Project Evolution
   *Tell an illustrative story about the process of creating your software, showing how it improved over time. This may draw upon what you learned from the two peer technical reviews. Consider the use of screenshots or other tools to demonstrate how your project evolved.*
 
-Automated Job Searcherhas evolved plenty since the start of the project. In the beginning the idea was to use a website's API to get information, have a database that holds usernames and passwords for users, and to use that database to store all the jobs already sent so that each week only new jobs are sent. What we learned is that while these are great ideas, we first needed to scale down our idea to the bare minimum with one user in mind *and then* build from there.
+The Automated Job Searcher has evolved plenty since the start of the project. In the beginning the idea was to use a website's API to get information, have a database that holds usernames and passwords for users, and to use that database to store all the jobs already sent so that each week only new jobs are sent. What we learned is that while these are great ideas, we first needed to scale down our idea to the bare minimum with one user in mind *and then* build from there.
 
 As previously mentioned, we tried finding job board APIs that were free, but unfortunately, none could be found. Instead, we found a video tutorial on how to webscrape Indeed that we ended up using (please refer to Attribution for source). We've built this program now with one user at a time using this program. We also decided it would be easier to send all the results received each week and not cross check them as that can become complicated as we involve more users into the situation.
 
